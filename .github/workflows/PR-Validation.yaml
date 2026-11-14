@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - main
-      
+
 jobs:
   code_checkout_&_file_size_check:
     runs-on: ubuntu-latest
@@ -27,7 +27,8 @@ jobs:
           fi
           
   
-  branch_check:
+  jobs:
+    branch_check:
       runs-on: ubuntu-latest
       steps:
         - name: Reads the branch name from ${{ github.head_ref }}
@@ -47,8 +48,8 @@ jobs:
               exit 1
             fi
 
-
-    pr_body_check:
+jobs:
+  pr_body_check:
       runs-on: ubuntu-latest
       steps:
         - name: Check PR Description
