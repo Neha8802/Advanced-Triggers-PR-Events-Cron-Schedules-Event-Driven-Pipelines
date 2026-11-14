@@ -2,7 +2,6 @@ name: smart trigger yaml
 
 on: 
   push:
-    
     branches: 
       -  main
       - 'release/*'
