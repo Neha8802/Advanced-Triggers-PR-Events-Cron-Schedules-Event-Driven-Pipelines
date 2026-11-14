@@ -25,7 +25,7 @@ jobs:
             echo "✅ All files are under the 1 MB limit."
           fi
           
-jobs2:     
+  
   branch_check:
       runs-on: ubuntu-latest
       steps:
@@ -47,7 +47,6 @@ jobs2:
             fi
 
 
-jobs3:
     pr_body_check:
       runs-on: ubuntu-latest
       steps:
