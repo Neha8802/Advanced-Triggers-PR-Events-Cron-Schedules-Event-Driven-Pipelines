@@ -18,7 +18,9 @@ jobs:
         run: echo " ran other cron job of 6 hours" 
 
       - name: print which job triggered
-        run: echo "the job that ran is ${{ github.event.schedule }}"
+        run: |
+          echo "Trigger event type: ${{ github.event_name }}"
+          echo "Cron schedule pattern: ${{ github.event.schedule }}"
 
       - name: checking health check
         run: |
