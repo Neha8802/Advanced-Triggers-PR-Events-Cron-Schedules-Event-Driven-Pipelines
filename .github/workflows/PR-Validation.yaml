@@ -1,0 +1,66 @@
+---
+name: pr validate yaml
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  code_checkout_&_file_size_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout-code
+        uses: actions/checkout@v4
+        
+      - name: Fails if any file in the PR is larger than 1 MB
+        run: |
+          echo "Scanning repository files for size violations (> 1MB)..."
+          # Find files larger than 1MB, excluding the .git directory
+          LARGE_FILES=$(find . -path ./.git -prune -o -type f -size +1M -print)
+
+          if [ -n "$LARGE_FILES" ]; then
+            echo "❌ Error: The following file(s) exceed the 1 MB limit:"
+            echo "$LARGE_FILES"
+            exit 1
+          else
+            echo "✅ All files are under the 1 MB limit."
+          fi
+          
+jobs2:     
+  branch_check:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Reads the branch name from ${{ github.head_ref }}
+          run: >
+            BRANCH="${{ github.head_ref }}"
+
+            echo "Checking branch name: '$BRANCH'"
+
+
+            # Match against feature/, fix/, or docs/ prefixes
+
+            if [[ "$BRANCH" =~ ^(feature|fix|docs)/ ]]; then
+              echo "✅ Branch name '$BRANCH' follows the required naming convention."
+            else
+              echo "❌ Error: Branch name '$BRANCH' violates naming standards."
+              echo "All PR branches must start with 'feature/', 'fix/', or 'docs/' (e.g., feature/login-page)."
+              exit 1
+            fi
+
+
+jobs3:
+    pr_body_check:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Check PR Description
+          run: >
+            BODY="${{ github.event.pull_request.body }}"
+
+            echo "Evaluating PR description..."
+
+
+            if [ -z "$BODY" ] || [ "$BODY" = "null" ]; then
+              echo "⚠️ Warning: This Pull Request has an empty description."
+              echo "Please ensure you add context and summary notes for your reviewers."
+            else
+              echo "✅ PR description is present."
+            fi
