@@ -1,10 +1,20 @@
-name: test workflow
+name: Smart Triggers - Paths Allowlist
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+      - 'release/*'
+    paths:
+      - 'src/**'
+      - 'app/**'
 
 jobs:
-  test:
+  path_filter_job:
     runs-on: ubuntu-latest
     steps:
-      - name: say hello
-        run: echo "Workflow engine is working!"
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run build check
+        run: echo "🚀 Code changes detected inside src/ or app/!"
