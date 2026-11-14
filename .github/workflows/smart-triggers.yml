@@ -1,22 +1,10 @@
-name: smart trigger yaml
+name: test workflow
 
-on: 
-  push:
-    branches: 
-      - main
-      - 'release/*'
-      
-    paths:
-      - 'src/**'
-      - 'app/**'
+on: [push]
 
 jobs:
-  smart_trigger:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: checkout the code
-        uses: actions/checkout@v4
-
-      - name: show this command
-        run: echo "this workflow ran"
+      - name: say hello
+        run: echo "Workflow engine is working!"
