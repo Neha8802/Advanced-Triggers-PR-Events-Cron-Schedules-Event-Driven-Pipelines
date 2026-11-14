@@ -3,13 +3,13 @@ name: smart trigger yaml
 on: 
   push:
     branches: 
-      -  main
+      - main
       - 'release/*'
       
     paths:
       - 'src/**'
       - 'app/**'
- 
+
 jobs:
   smart_trigger:
     runs-on: ubuntu-latest
@@ -20,7 +20,3 @@ jobs:
 
       - name: show this command
         run: echo "this workflow ran"
-
-    
-
-    
