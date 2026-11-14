@@ -18,6 +18,9 @@ jobs:
       - name: checkout the code
         uses: actions/checkout@v4
 
+      - name: show this command
+        run: echo "this workflow ran"
+
     
 
     
