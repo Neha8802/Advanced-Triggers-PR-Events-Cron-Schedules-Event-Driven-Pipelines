@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+      
 jobs:
   code_checkout_&_file_size_check:
     runs-on: ubuntu-latest
