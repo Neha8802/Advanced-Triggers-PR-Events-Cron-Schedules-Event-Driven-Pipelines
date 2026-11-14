@@ -1,0 +1,38 @@
+name: schedule-task
+
+on: 
+  schedule:
+    - cron: '30 2 * * 1'
+    - cron: '0 */6 * * *'
+
+  workflow_dispatch:
+
+jobs:
+  schedule-task:
+    runs-on: ubuntu-latest
+    steps:
+      - name: schedule trigger
+        run: echo "running the cron job"
+
+      - name: another cron job
+        run: echo " ran other cron job of 6 hours" 
+
+      - name: print which job triggered
+        run: echo "the job that ran is ${{ github.event.schedule }}"
+
+      - name: checking health check
+        run: |
+          echo "Pinging target health endpoint..."
+          # Pinging a reliable public test endpoint (GitHub's Zen API)
+          RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://api.github.com/zen)
+          
+          echo "HTTP Response Code received: $RESPONSE_CODE"
+          
+          if [ "$RESPONSE_CODE" -eq 200 ]; then
+            echo "✅ Health check passed: Endpoint is responsive and healthy."
+          else
+            echo "❌ Health check failed with status code: $RESPONSE_CODE"
+            exit 1
+          fi
+
+       
