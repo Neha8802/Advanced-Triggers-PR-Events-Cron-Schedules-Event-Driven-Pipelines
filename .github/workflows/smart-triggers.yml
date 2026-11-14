@@ -1,0 +1,24 @@
+name: smart trigger yaml
+
+on: 
+  push:
+    
+    branches: 
+      - 'main/**'
+      - 'release/**'
+      
+    paths:
+      - 'src/**'
+      - 'app/**'
+ 
+jobs:
+  smart_trigger:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout the code
+        run: actions/checkout@v4
+
+    
+
+    
