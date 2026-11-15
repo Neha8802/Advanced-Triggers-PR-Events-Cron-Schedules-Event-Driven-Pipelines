@@ -9,9 +9,6 @@ jobs:
   repository-request:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout code
-        run: actions/checkout@v4
-
       - name: Process External Client Payload
         run: |
           echo "🚀 Received external dispatch event!"
