@@ -1,0 +1,13 @@
+name: Run Test
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  Run_Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print the status of the job
+        run: echo "the job successfully ran"
