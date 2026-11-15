@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - 'realease/*'
+      - 'release/*'
     paths-ignore:
       - '*.md'
       - 'docs/**'
