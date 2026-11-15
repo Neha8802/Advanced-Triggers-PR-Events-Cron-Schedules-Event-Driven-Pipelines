@@ -1,0 +1,21 @@
+name: path-ignore-workflow
+
+on: 
+  push:
+    branches:
+      - main
+      - 'realease/*'
+    paths:
+      - '*.md'
+      - '*docs'
+
+
+jobs:
+  path-ignore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v4
+
+      - name: output
+        run: job ran successfully
