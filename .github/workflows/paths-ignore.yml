@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - 'realease/*'
-    paths:
+    paths-ignore:
       - '*.md'
       - '*docs'
 
