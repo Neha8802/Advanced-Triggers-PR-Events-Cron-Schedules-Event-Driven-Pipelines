@@ -1,4 +1,4 @@
-name: Smart Triggers - Paths Allowlist
+name: Smart Triggers 
 
 on:
   push:
